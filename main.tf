@@ -16,7 +16,7 @@ provider "aws" {
 resource "aws_instance" "app_server" {
   ami           = "ami-0b4c7755cdf0d9219"
   instance_type = "t2.micro"
-  key_name  = "greenhydra"
+  key_name = "greenhydra"
   tags = {
     Name = "Node1"
   }
