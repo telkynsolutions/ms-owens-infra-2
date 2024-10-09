@@ -1,3 +1,10 @@
+variable "node_instance_type" {
+  default = "t2.micro"
+}
+variable "node_instance_count" {
+  default = "2"
+}
+
 terraform {
   required_providers {
     aws = {
@@ -34,7 +41,8 @@ provider "aws" {
   }
 resource "aws_instance" "app_server" {
   ami           = "ami-0b4c7755cdf0d9219"
-  instance_type = "t2.micro"
+  instance_type = var.node_instance_type
+  count = var.node_instance_count
   key_name = "greenhydra"
   vpc_security_group_ids = [aws_security_group.allow_ssh.id]
   tags = {
